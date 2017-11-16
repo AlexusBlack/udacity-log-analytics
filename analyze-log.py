@@ -13,9 +13,12 @@ def main():
     c = db.cursor()
 
     # What are the most popular three articles of all time?
+    print("\n\nTOP 3 MOST VIEWED ARTICLES")
     reports.get_top3_articles(c)
 
     # Who are the most popular article authors of all time?
+    print("\n\nTOP 10 AUTHORS")
+    reports.get_top10_authors(c)
 
     # Which authors wrote most articles?
 

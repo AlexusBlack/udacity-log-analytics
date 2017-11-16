@@ -13,3 +13,17 @@ group by articles.id
 order by num desc
 limit 3;
 ```
+
+## 10 Best authors view
+```sql
+create view top10authors as
+select authors.id, authors.name, count(log.id) as num
+from log 
+join articles on (log.path = concat('/article/', articles.slug)) 
+join authors on (articles.author = authors.id)
+where method = 'GET' and status = '200 OK'
+group by authors.id
+order by num desc
+limit 10;
+
+```
