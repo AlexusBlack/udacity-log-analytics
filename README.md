@@ -27,22 +27,30 @@ group by article;
 
 ```sql
 create view top3articles as
-select articles.id, title, authors.name as author, views
-from articles, articles_views, authors
-where articles.id = articles_views.article and
-articles.author = authors.id
-order by views desc
-limit 3;
+  select 
+    articles.id, 
+    title, 
+    authors.name as author, 
+    views
+  from articles
+    join articles_views on articles.id = articles_views.article
+    join authors on articles.author = authors.id
+  order by views desc
+  limit 3;
 ```
 
 ### 10 Best authors view
 ```sql
 create view top10authors as
-select authors.id, authors.name, count(articles.id) as articles, sum(articles_views.views) as views
-from articles
-join articles_views on articles.id = articles_views.article
-join authors on articles.author = authors.id
-group by authors.id
-order by views desc
-limit 10;
+  select 
+    authors.id, 
+    authors.name, 
+    count(articles.id) as articles, 
+    sum(articles_views.views) as views
+  from articles
+    join articles_views on articles.id = articles_views.article
+    join authors on articles.author = authors.id
+  group by authors.id
+  order by views desc
+  limit 10;
 ```
