@@ -1,5 +1,9 @@
 # Udacity Log Analytics
-Log analytics software for Udacity
+Log analytics software for Udacity. This version supports 4 types of reports:
+- Three most popular articles of all time
+- Ten most popular article authors of all time
+- Three authors who wrote most articles
+- Days with more than 1% of requests lead to errors
 
 ## Dependencies
 - psycopg2
