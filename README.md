@@ -13,7 +13,9 @@ $ python3 analyze-log.py
 
 ## Views
 
-### articles with views
+This software uses some views from PostgreSQL database, make sure you have the views before using it.
+
+### Articles with views
 ```sql
 create view articles_views as
   select 
