@@ -53,3 +53,43 @@ create view errors_by_day as
   group by day
   order by error_count desc;
 ```
+
+## Report example
+```
+Starting log analysis
+Requesting data
+
+
+TOP 3 MOST VIEWED ARTICLES
+  Id  Title                             Author                    Views
+----  --------------------------------  ----------------------  -------
+  26  Candidate is jerk, alleges rival  Rudolf von Treppenwitz   338647
+  25  Bears love berries, alleges bear  Ursula La Multa          253801
+  23  Bad things gone, say good people  Anonymous Contributor    170098
+
+
+TOP 10 AUTHORS
+  Id  Name                      Articles    Views
+----  ----------------------  ----------  -------
+   1  Ursula La Multa                  4   507594
+   2  Rudolf von Treppenwitz           2   423457
+   3  Anonymous Contributor            1   170098
+   4  Markoff Chaney                   1    84557
+
+
+TOP 3 AUTHORS BY ARTICLE NUMBER
+  Id  Name                      Articles
+----  ----------------------  ----------
+   1  Ursula La Multa                  4
+   2  Rudolf von Treppenwitz           2
+   3  Anonymous Contributor            1
+
+
+DAYS WITH MORE THEN 1% OF ERRORS
+Day                          Requests    Errors    Percent
+-------------------------  ----------  --------  ---------
+2016-07-17 00:00:00+00:00       55907      1265    2.26269
+
+
+ End of report. Have a good day.
+```
