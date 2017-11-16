@@ -10,14 +10,15 @@ Check README for more info.
 
 from tabulate import tabulate
 
+
 def show_top3_articles(connection):
     ''' Shows 3 articles with most views '''
 
     request = '''
-    select 
-        articles.id, 
-        title, 
-        authors.name as author, 
+    select
+        articles.id,
+        title,
+        authors.name as author,
         views
     from articles
         join articles_views on articles.id = articles_views.article
@@ -34,10 +35,10 @@ def show_top10_authors(connection):
     ''' Shows 10 authors with most views '''
 
     request = '''
-    select 
-        authors.id, 
-        authors.name, 
-        count(articles.id) as articles, 
+    select
+        authors.id,
+        authors.name,
+        count(articles.id) as articles,
         sum(articles_views.views) as views
     from articles
         join articles_views on articles.id = articles_views.article
@@ -49,6 +50,7 @@ def show_top10_authors(connection):
     authors = connection.fetchall()
 
     print(tabulate(authors, headers=["Id", "Name", "Articles", "Views"]))
+
 
 def show_authors_by_article_number(connection):
     ''' Shows 3 authors with most articles '''
@@ -68,11 +70,12 @@ def show_authors_by_article_number(connection):
 
     print(tabulate(authors, headers=["Id", "Name", "Articles"]))
 
+
 def show_worst_days_in_history(connection):
     ''' Shows days with more then 1% or error requests '''
 
     request = '''
-    select 
+    select
         requests_by_day.day,
         requests_count,
         error_count,

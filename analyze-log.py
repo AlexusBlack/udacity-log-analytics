@@ -4,6 +4,7 @@
 import psycopg2
 import reports
 
+
 def main():
     ''' General logic for our log analyser, calls all of reports '''
 
@@ -31,5 +32,6 @@ def main():
     reports.show_worst_days_in_history(connection)
 
     print("\n\nEnd of report. Have a good day.")
+
 
 main()
