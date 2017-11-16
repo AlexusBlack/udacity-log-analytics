@@ -1,6 +1,18 @@
+'''
+This is library of available reports that can be used on logs of website.
+Important, these reports depend on views in DB:
+- articles_views
+- requests_by_day
+- errors_by_day
+
+Check README for more info.
+'''
+
 from tabulate import tabulate
 
-def get_top3_articles(connection):
+def show_top3_articles(connection):
+    ''' Shows 3 articles with most views '''
+
     request = '''
     select 
         articles.id, 
@@ -18,7 +30,9 @@ def get_top3_articles(connection):
     print(tabulate(articles, headers=["Id", "Title", "Author", "Views"]))
 
 
-def get_top10_authors(connection):
+def show_top10_authors(connection):
+    ''' Shows 10 authors with most views '''
+
     request = '''
     select 
         authors.id, 
@@ -36,7 +50,9 @@ def get_top10_authors(connection):
 
     print(tabulate(authors, headers=["Id", "Name", "Articles", "Views"]))
 
-def top_authors_by_article_number(connection):
+def show_authors_by_article_number(connection):
+    ''' Shows 3 authors with most articles '''
+
     request = '''
     select
         authors.id,
@@ -52,16 +68,18 @@ def top_authors_by_article_number(connection):
 
     print(tabulate(authors, headers=["Id", "Name", "Articles"]))
 
-def worst_days_in_history(connection):
+def show_worst_days_in_history(connection):
+    ''' Shows days with more then 1% or error requests '''
+
     request = '''
     select 
         requests_by_day.day,
         requests_count,
         error_count,
-        error_count::double precision / requests_count::double precision *100.0 as error_percent
+        error_count::double precision / requests_count::double precision * 100.0 as error_percent
     from requests_by_day
         join errors_by_day on requests_by_day.day = errors_by_day.day
-    where (error_count::double precision / requests_count::double precision *100.0) > 1
+    where (error_count::double precision / requests_count::double precision * 100.0) > 1
     order by error_percent desc;'''
     connection.execute(request)
     days = connection.fetchall()
